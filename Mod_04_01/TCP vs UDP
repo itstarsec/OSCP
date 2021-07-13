@@ -1,0 +1,9 @@
+TCP
+  - Connection-oriented
+  - Suited for applications that require high reliability (HTTP, FTP, Telnet)
+  - Three-way handshake
+
+UDP
+  - Connectionless
+  - Suited for applications that need fast connection (DNS, DHCP, SNMP)
+  - No handshake
