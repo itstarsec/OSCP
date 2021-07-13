@@ -1,0 +1,14 @@
+Ton of stuff in there:
+  cd /usr/share/nmap/scripts
+
+Simple full scan with NSE:
+  nmap -vv -p 137 --scrip=all 192.168.27.160
+
+Chọn 1 lỗ hổng chỉ định và dùng câu lệnh: 
+  nmap -p445 --script smb-vuln-ms17-010 <target>
+
+Một số câu lệnh NSE thường sử dụng từ recon - exploit - DOS
+  nmap -sV --script vuln <target>
+  nmap -sV --script="version,discovery" <target>
+  nmap -sV --script "not exploit" <target>
+  nmap -sV --script "(http-*) and not(http-slowloris or http-brute)" <target>
