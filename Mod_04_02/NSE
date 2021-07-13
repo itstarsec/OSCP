@@ -1,3 +1,6 @@
+# nmap --script-update-db
+
+
 Ton of stuff in there:
   cd /usr/share/nmap/scripts
 
@@ -12,3 +15,5 @@ Một số câu lệnh NSE thường sử dụng từ recon - exploit - DOS
   nmap -sV --script="version,discovery" <target>
   nmap -sV --script "not exploit" <target>
   nmap -sV --script "(http-*) and not(http-slowloris or http-brute)" <target>
+
+
