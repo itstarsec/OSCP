@@ -1,0 +1,11 @@
+Sau khi thực hiện câu lệnh nmap đầu tiên (stage-1) để scan nhanh các dịch vụ đang hoạt động trên máy chủ Kioptrix_1. Ta tiếp tục sử dụng câu lênh bên dưới (stage-2) để lấy các thông tin chi tiết tương ứng đối với các port mà máy chủ Kioptrix_1 đã mở. 
+
+nmap -nvv -Pn- -sSV -p 22,80,111,139,443,1024 --version-intensity 9 -A -oN /root/kioptrix1_detailed.txt <target_IP>
+
+Options analysis:
+-nvv: As you know the divisar for verbosity so we were saying we want some verbosity here, and with the "n" I'm just saying disable reverse DNS resolution because we don't need that.
+-Pn: were familiar
+-sSV: if you combine the little "s" with the big "S" and the big "V" (likely -sS -sV == -sSV)
+	+ sS is Stealth scanning
+	+ sV is Virgin scanning
+--version-intensity 9: This is just going to allow us to identify a service. So, we have a choice between 0 and 9 with 9 being the most intense. So the higher that we pack in the more intense every pick
