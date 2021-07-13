@@ -1,0 +1,10 @@
+Câu lệnh nmap đầu tiên (stage-1) dùng để scan máy chủ Kioptrix_1:
+
+nmap -Pn -sS --stats-every 3m --max-retries 1 --max-scan-delay 20 --defeat-rst-ratelimit -T4 -p1-65535 -oN /root/kioptrix1.txt <target_IP>
+
+Options analysis:
+--stats-every 3m: Verbosity or verbose so instead of a switching V we can specify how often we want to see information come back
+--max-retries 1: This is how much we're going to retry this scanner only I try to scan once at the house is enough we're going to give up on the skin
+--max-scan-delay 20: A causes and map to wait a specific. Of time before each probit sends out. 
+So we do this in case there's rate-limiting
+--defeat-rst-ratelimit: is filtered rst packet, knocking necessary so it is closed. It's likely that you're not going to run into many filtered ports but if you do run into one then you might want to check again and see if your scan was maybe rate limited may be scanned just that port
