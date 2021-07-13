@@ -1,0 +1,4 @@
+Sử dụng câu lệnh nmap bên dưới để quét các port UDP trên hệ thống Kioptrix_1:
+nmap -Pn --top-ports 1000 -sU --stats-every 3m --max-retries 1 -T3 -oN /root/kioptrix1_U.txt <target_IP>
+
+Go ahead and go with a detailed on the TCP side of things
