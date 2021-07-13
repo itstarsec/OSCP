@@ -11,7 +11,7 @@ nmap -vv -Pn -A -sS -T4 -p-
 Scan với port chỉ định 80 (http)
 nmap -vv -Pn -A -sS -T4 -p 80
 Scan dãy port 1-1024 và kết xuất với định dạng Nmap ở đường dẫn /root/tcpscan.txt
-nmap -vv -Pn -A -sS -T4 -p 1-1024 -oN /root/tcpscan.txt 192.168.27.160
+nmap -vv -Pn -A -sS -T4 -p 1-1024 -oN /root/tcpscan.txt 192.168.27.160 
 
 Options analysis:
 -vv: Hiển thị thông tin trong quá trình scan, thêm chữ "v" tiếp theo để tăng mức độ chi tiết (lượng thông tin mà tập lệnh cung cấp). Nói chung, bạn có thể tiếp tục thêm nhiều v vào -v tùy theo mức độ mong muốn tìm hiểu thêm thông tin về những gì đang xảy ra.
