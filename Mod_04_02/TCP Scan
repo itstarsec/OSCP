@@ -1,0 +1,25 @@
+Scan without DNS Resolution:
+- nmap -sn 192.168.27.1-254
+- nmap -sn 192.168.27.0/24
+Options analysis:
+-n (No DNS resolution) .
+    Tells Nmap to never do reverse DNS resolution on the active IP addresses it finds. Since DNS can be
+    slow even with Nmap´s built-in parallel stub resolver, this option can slash scanning times.
+
+Scan các port thông dụng phổ biến 
+nmap -vv -Pn -A -sS -T4 -p-
+Scan với port chỉ định 80 (http)
+nmap -vv -Pn -A -sS -T4 -p 80
+Scan dãy port 1-1024 và kết xuất với định dạng Nmap ở đường dẫn /root/tcpscan.txt
+nmap -vv -Pn -A -sS -T4 -p 1-1024 -oN /root/tcpscan.txt 192.168.27.160
+
+Options analysis:
+-vv: Hiển thị thông tin trong quá trình scan, thêm chữ "v" tiếp theo để tăng mức độ chi tiết (lượng thông tin mà tập lệnh cung cấp). Nói chung, bạn có thể tiếp tục thêm nhiều v vào -v tùy theo mức độ mong muốn tìm hiểu thêm thông tin về những gì đang xảy ra.
+-Pn: Thỉnh thoảng, người dùng sẽ gặp khó khăn khi quét mạng vì ping được gửi bởi Nmap bị chặn bởi tường lửa trên bộ định tuyến. Điều này có thể làm cho người dùng lầm tưởng là không có thiết bị nào trên mạng (dù trên thực tế là có). Để tránh điều này, bạn có thể bao gồm flag -Pn, để đôi khi cho phép kết nối trực tiếp với các thiết bị và nhận được phản hồi.
+-A: Để bật tính năng phát hiện hệ điều hành, phát hiện phiên bản, quét tập lệnh và theo dõi.
+-sS: Thực hiện Scan theo cơ chế lén lút, thường dùng để lẩn tránh các phát hiện của Firewall. Nhưng đối với các FW hiện tại thì không thể làm cách này được nữa.
+-T: Là chỉ định tốc độ scan của tiến trình, có 5 mốc tốc độ là 1-5. 1 là chậm nhất, 5 là nhanh nhất. Ở đây chọn T4 là để nó không bỏ các thông tin bị xen tạp, có đủ thời gian để trả về kết quá chính xác và nhanh.
+
+
+Tham khảo thêm tài liệu Nmap quantrimang.com:
+https://quantrimang.com/tat-tan-tat-ve-nmap-157752
