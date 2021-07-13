@@ -1,0 +1,11 @@
+Câu lệnh ping 4 gói với options -c và lưu vào tệp ping.txt
+ping -c 4 192.168.27.160 > ping.txt
+
+Câu lệnh đọc file ping.txt và cắt chuỗi để lấy duy nhất địa chỉ IP
+cat ping.txt | grep "64 bytes" | cut -d " " -f 4 | sed 's\.$\\'
+
+Câu lệnh ping 1 gói và đồng thời cắt chuỗi chỉ lấy duy nhất địa chỉ IP
+ping -c 1 192.168.27.160 | grep "64 bytes" | cut -d " " -f 4 | sed 's\.$\\'
+
+Câu lênh đọc danh sách IP trong tệp iplist và tự động scan với công cụ Nmap
+for ip in $(cat iplist.txt);do nmap -Pn $ip; done
