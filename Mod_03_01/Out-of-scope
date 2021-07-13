@@ -2,3 +2,6 @@ Tham khảo các payload từ nguồn: https://www.exploit-db.com/google-hacking
 Truy cập website https://subdomainfinder.c99.nl/ sử dụng để truy tìm các domain con (subdomain)
 Sử dụng https://www.netcraft.com/ để tìm thêm thông tin về đối tượng
 Sử dụng https://www.shodan.io/ để xem các thông tin port máy chủ, vuln (nếu có) và các thông tin platform v.v.
+
+Sử dụng các công cụ có sẵn trên Kali như:
+Whois, Recon-ng, v.v
