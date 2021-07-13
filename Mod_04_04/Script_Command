@@ -1,0 +1,7 @@
+msfconsole -q
+search portscan
+use auxiliary/scanner/portscan/syn
+set ports 1-65535
+set rhosts 192.168.27.160
+set threads 10
+run
