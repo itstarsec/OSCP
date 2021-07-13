@@ -1,0 +1,2 @@
+Kết hợp với kỹ thuật tìm và cắt chuỗi. Kết quả thu được là 1 chuỗi duy nhất bao gồm port/giao thức
+| grep -E 'open\s' | cut -d " " -f 1
