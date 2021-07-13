@@ -1,0 +1,5 @@
+Sử dụng công cụ nikto để tiếp tục khai và dò tìm lỗ hổng tồn tại trên platform của hệ thống Kioptrix_1
+Câu lệnh thực thi như sau:
+nikto -h 192.168.27.163
+hoặc
+nikto -h 192.168.27.163:443
