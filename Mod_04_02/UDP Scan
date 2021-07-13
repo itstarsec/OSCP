@@ -1,0 +1,11 @@
+Timming: 754.62 seconds
+nmap -vv -Pn -A -sU -T4 --top-ports 200 1-1024 -oN /root/udpscan.txt 192.168.27.160
+
+Timming: 119.05 seconds
+nmap -Pn --top-ports 1000 -sU --stats-every 3m --max-retries 1 -T3 -oN /root/scan2U.txt 192.168.27.160
+
+Nên sử dụng câu lệnh thứ 2 để dò ra nhanh các port UDP đang mở, rồi sau đó sử dụng câu lệnh 1 để diễn giải thêm các thông tin về dịch vụ ở port được mở.
+
+nmap -vv -Pn -A -sU -T4 -p 137 1-1024 -oN /root/udpscan.txt 192.168.27.160
+
+=> Time-saving tactics
