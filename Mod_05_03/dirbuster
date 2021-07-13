@@ -1,0 +1,8 @@
+Thực hiện tải xuống file big.txt ở đường dẫn bên dưới với câu lệnh wget:
+wget https://raw.githubusercontent.com/digination/dirbuster-ng/master/wordlists/big.txt
+Sau đó sử dụng công cụ dirb để dò tìm các đường dẫn (uri) tồn tại trên hệ thống.
+dirb http://192.168.27.163/ big.txt
+
+Từ đó chúng ta sẽ thu thập được các thông tin cần thiết để chuẩn bị một cuộc khai thác vào hệ thống.
+Kỹ thuật brute-force with uri này đôi khi sẽ giúp chúng ta tiếp cận được 1 vài form upload hoặc đường dẫn chứa thông tin xác thực v.v
+Try harder với nhiều thư viện khác để tìm ra các URI đang bị ẩn là gì.
