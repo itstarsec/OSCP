@@ -1,0 +1,21 @@
+Anatomy of Memory
+
+Kernel
+|
+Stack   (down)
+|  {Poor input sanitation} -> Buffer Overlows
+Heap    (up)
+|
+Data
+|
+Text
+
+Anatomy of the Stack
+
+ESP (Extended Stack Pointer) -> top
+|
+Buffer Space -> Vậy khai thác buffer over flow là nói đến "Poor input Sanitation" 
+|
+EBP (Extended Base Pointer) -> base
+|
+EIP (Extended Instruction Pointer) / Return Address
