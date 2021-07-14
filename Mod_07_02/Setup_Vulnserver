@@ -1,0 +1,27 @@
+Download Vulnserver https://thegreycorner.com/vulnserver.html
+
+Download Immunity Debugger https://www.immunityinc.com/products/debugger/
+
+Run Vulnserver
+
+Check with netcat command:
+
+nc -nv 192.168.27.128 9999
+
+HELP -> TRUN /.:/ AAAAAAAAAAAA
+
+Mở phần mềm Immunity Debugger với quyền Administrator
+
+Attach VulnServer và nhấn F9
+
+Quay trờ lại máy Kali Linux và chạy script Fuzzer.py
+
+Kiểm tra kết qua -> Vulnserver đã bị Crashed
+
+ESP lúc này là ASCII: 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAÂ'
+
+EBP lúc này là: 414141 (mã ASCII của ký tự A)
+
+EIP lúc này bị trả về address 414141
+
+Todo: Lập trình các ký tự malicious code để fuzzing chiếm quyền RCE Vulnserver?!
