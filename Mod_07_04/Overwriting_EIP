@@ -1,4 +1,4 @@
-#Như ở Mod_07_03 ta đã tìm được vị trí kết thúc offset EBP là 2003 (bytes), script này sẽ tiếp tục chèn 4 bytes ký tự "B" vào offsec EIP.
+#Như ở Mod_07_03 ta đã tìm được vị trí kết thúc offset EBP là 2003 (bytes), script này sẽ tiếp tục chèn 4 bytes ký tự "B" vào offset EIP.
 !#/usr/bin/python
 import socket
 import os
