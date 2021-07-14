@@ -1,0 +1,14 @@
+Ngoài các công cụ như nmap, enum4lix, dnsrecon.. Đối với các mục tiêu chạy giao thức phổ biến khác như FTP, SNMP, SMTP
+Chúng ta có thể sử dụng thêm các công cụ khác như bên dưới:
+
+FTP -> metasploit scanner
+
+SNMP -> snmp-check
+
+snmp-check 192.168.27.163
+
+SMTP -> smtp-user-enum
+
+smtp-user-enum -M VRFY -u root -t 192.168.27.163
+
+Kỹ thuật smtp với packer VRFY thường thấy xuất hiện trong log cảnh báo IDS
