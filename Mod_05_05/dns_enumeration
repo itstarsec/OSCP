@@ -1,0 +1,20 @@
+Câu lệnh thu thập thông tin nhanh nameserver của domain:
+
+host -t ns zonetransfer.me
+
+Câu lệnh thu thập mail server của domain:
+
+host -t mx zonetransfer.me
+
+Câu lệnh thu thập thông tin dựa vào kỹ thuật DNS zone transfer
+
+host -l [domain] [nameserver]
+
+Tiếp tục sử dụng công cụ dnsrecon để thu thập thông tin DNS
+
+dnsrecon -d [domain] -t [subdomain]
+
+Công cụ này giúp thu thập đầy đủ thông tin DNS từ domain (tường minh)
+
+dnsenum [domain]
+
