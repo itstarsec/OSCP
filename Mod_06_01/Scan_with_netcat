@@ -1,0 +1,11 @@
+Ngoài scan bằng Nmap, chúng ta có thể sử dụng netcat để scan port.
+Ví dụ: 
+nc -nvv -w 1 -z 10.0.0.19 3388-3390
+Trong đó: nc là TCP/IP swiss army knife
+	  -n là numeric-only IP address, no DNS
+	  -v verbose [use twice to be more verbose]
+	  -w secs timeout for connects and final net reads
+	  -z zero-I/O mode [used for scanning]
+
+Đây là cách scan port UDP bằng netcat
+nc -nv -u -z -w 1 10.0.0.19 160-162
