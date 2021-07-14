@@ -1,0 +1,32 @@
+Tiếp tục thu thập thông tin dịch vụ samba (smb) trên máy chủ Kioptrix_1
+#############################################################
+locate smb.conf
+nano /etc/samba/smb.conf
+
+Thêm 2 dòng để cấu hình tắt các tính năng xác thực từ phía client.
+
+client use spnego = no
+client ntlmv2 auth = no
+#############################################################
+enum4linux 192.168.27.163
+
+/etc/init.d/postgresql start | enable
+msfdb init
+msfconsole -q
+search smb
+use auxiliary/scanner/smb/smb_version
+
+searchploit samba [version]
+searchploit samba 2.2.1a
+
+Google -> exploit-db.com -> search -> samba trans2open
+
+Recommend: scan with metasploit -> exploit with script non-metasploit
+
+nbtscan 192.168.27.163
+
+smbclient -L 192.168.27.163 -> hit enter to access (cuz "None Password")
+
+-> Finded share name IPC$
+
+smbclient "\\\\192.168.27.163\IPC$"
