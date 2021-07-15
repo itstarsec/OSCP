@@ -1,0 +1,4 @@
+tcpdump -s0 -n -i eth0 src 192.168.27.163 and port 139 -A -c 10 2>/dev/null | grep -i "samba\|s.a.m" | tr -d '.' | grep -oP 'UnixSamba.*[0-9a-z]' | tr -d '\n'
+
+Tham khảo scripts: 
+https://raw.githubusercontent.com/rewardone/OSCPRepo/master/scripts/recon_enum/smbver.sh
