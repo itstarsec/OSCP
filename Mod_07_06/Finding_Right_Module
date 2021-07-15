@@ -1,0 +1,43 @@
+Download một module đặc biệt có tên là Mona module
+
+https://github.com/corelan/mona
+
+Download file zip và giải nén ra file mona.py, sau đó lưu vào Folder PyCommand của Immumity Debugger.
+
+Mở vulnserver lên và attach vào ID, sau đó gõ lệnh:
+!mona modules
+
+
+Quay trở lại máy kali linux
+
+locate nasm_shell
+
+/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+
+nasm> JMP ESP
+
+!mona find -s "\xff\xe4" -m esstunc.dll
+
+Chú ý addres 0x625011af, chúng ta sẽ sử dụng nó cho việc trả về địa chỉ ô nhớ
+
+Quay về máy Kali Linux, thoát khỏi chương trình nasm
+
+Mở lại script badCharts.py, xoá biến badChars.
+
+Với thông tin chúng ta vừa lấy được ở ID là: 625011af
+
+Thực hiện gõ ngược lại ô nhớ "625011af", được gọi là little endian
+
+"\xaf\x11\x50\x62"
+
+Sau đó chuyển qua ID và mở lại windows Consulting Services Manager
+
+Nhấn vào mũi tên sang phải và gõ địa chỉ ô nhớ là: 625011af (Nó sẽ chuyển con trỏ đến FFE4 JMP ESP)
+
+Tiếp tục nhấn F2 để đặt breakpoint tại đây và nhấn play.
+
+Quay lại máy Kali Linux chạy script module.py để thực thi buffer overflow vào EIP
+
+Kiểm tra trên ID. Breakpoint lúc này tại essfunc.625011AF và EIP là 625011AF.
+
+Như vậy chúng ta đã kiểm soát và chèn shellcode vào được EIP. Chỉ cần thay thế shellcode bằng mã độc là có thể lấy chiếm quyền điều khiển hệ thống.
