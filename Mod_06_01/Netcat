@@ -11,7 +11,7 @@ Reverse Shells
 Vì tính chất hoạt động linh hoạt nên phương thức này đa số được sử dụng trong các cuộc tấn công 
 vào hệ thống.
 
-Sử dựng netcat để dò port đang mở trên máy chủ Kioptrix_1
+Sử dụng netcat để dò port đang mở trên máy chủ Kioptrix_1
 
 nc -nv 192.168.27.163 443
 
