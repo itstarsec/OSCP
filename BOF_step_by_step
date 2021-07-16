@@ -1,0 +1,14 @@
+Quy trình khai thác lỗ hổng BUFFER OVERFLOW (BOF)
+
+FUZZING (Phun một mảng ký tự liên tục vào cổng nhận dữ liệu của mục tiêu, tìm kiếm chức năng nào cho phép làm được điều này, ví dụ Vulnserver là 'TRUN /.:/')
+|
+PATTERN (Dùng 1 chuỗi ký tự mẫu, sử dụng metasploit để khởi tạo chuỗi này, sau đó dùng chúng để xác định vị trí bytes bắt đầu của EIP, hoặc còn gọi là giới hạn số bytes tối thiểu của chuỗi kỹ tự có thể gây crashed)
+|
+OVERWRITING EIP (Ghi đè 4 ký tự bytes bất kỳ lên ô nhớ - offset EIP để chuẩn bị cho RCE)
+|
+BAD CHARS (Tiếp tục sử dụng các kỹ tự badchars để kiểm tra tính nguyên vẹn của payload RCE sẽ gởi, nếu có sự xuất hiện của byte '\xB0' thì việc RCE sẽ không thể xảy ra. Vì payload sẽ bị trục trặc không nguyên vẹn trong quá trình khai thác.)
+|
+MODULES (sử dụng nasm JMP ESP -> FFE4 -> !mona find -s "\xff\xe4" -m essfunc.dll -> vị trí bytes EIP -> 625011af -> little endian -> "\xaf\x11\x50\x62" <- vị trí EIP 'trùm cuối')
+|
+GENERATING SHELLCODE (Sử dụng msfvenom để tạo 1 payload shellcode, kết hợp với vị trí EIP ta vừa tìm được viết kịch bản khai thác RCE mục tiêu thôi nào!)
+
