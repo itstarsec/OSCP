@@ -40,4 +40,4 @@ Quay lại máy Kali Linux chạy script module.py để thực thi buffer overf
 
 Kiểm tra trên ID. Breakpoint lúc này tại essfunc.625011AF và EIP là 625011AF.
 
-Như vậy chúng ta đã kiểm soát và chèn shellcode vào được EIP. Chỉ cần thay thế shellcode bằng mã độc là có thể lấy chiếm quyền điều khiển hệ thống.
+Như vậy chúng ta đã kiểm soát và chèn shellcode vào được EIP. Chỉ cần kết hợp mã độc và vị trí "expressison" của module vừa tìm thấy là có thể lấy chiếm quyền điều khiển hệ thống.
