@@ -29,6 +29,7 @@ download linuxprivchecker
 https://raw.githubusercontent.com/sleventyeleven/linuxprivchecker/master/linuxprivchecker.py
 
 trên máy mục tiêu sử dụng wget để download file linuxprivchecker.py
+di chuyển đến thư mục tmp để có thể gán quyền thực thi cho file .py
 chmod 777 linixprivchecker.py
 ./linuxprivchecker.py 
 -> Cho phép user www-data ghi vào file /etc/passwd
