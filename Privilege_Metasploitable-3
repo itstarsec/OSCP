@@ -78,3 +78,13 @@ MSBulletin : N/A
 CVEID      : 2017-7199
 Link       : https://aspe1337.blogspot.co.uk/2017/04/writeup-of-cve-2017-7199.html
 VulnStatus : Not Vulnerable
+
+Chú ý Architecture phải là x64 thoả mãn 4 điều kiện sau:
+
+- System architecture (ie. the arch of the system you're running on).
+- Meterpreter architecture (ie. the current meterpreter session you'll run the exploit through).
+- Payload architecture (ie. the PAYLOAD setting in the exploit module).
+- Target architecture (ie. the TARGET setting in the exploit module).
+
+SSH Port Fowarding Command:
+ssh -L 127.0.0.1:33899:172.16.1.130:3389 vagrant@172.16.1.130
