@@ -2,6 +2,8 @@ Tham khảo:
 https://vk9-sec.com/sherlock-find-missing-windows-patches-for-local-privilege-escalation/
 https://github.com/rasta-mouse/Sherlock.git
 
+meterpreter> post/multi/recon/local_exploit_suggester
+
 PS C:\> Set-ExecutionPolicy -ExecutionPolicy bypass -Scope CurrentUser -Force
 PS C:\> Import-Module -Name C:\tmp\s.ps1
 PS C:\> Find-AllVulns
