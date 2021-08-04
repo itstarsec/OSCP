@@ -1,2 +1,0 @@
-Sử dụng câu lệnh bash để tìm hostname trong range IP mục tiêu 50-100:
-for ip in $(seq 50 100); do host 38.100.193.$ip; done | grep -v "not found"
