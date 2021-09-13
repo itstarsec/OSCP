@@ -1,4 +1,5 @@
 Hackthebox lab lists: https://github.com/rkhal101/Hack-the-Box-OSCP-Preparation
 Cheatsheet for OSCP: https://github.com/twseptian/Cheatsheet-God
 OSCP Survival Guide: https://github.com/twseptian/OSCP-Survival-Guide
+Mindmaps: https://github.com/corneacristian/OSCP-MindMap/blob/main/OSCP-MindMap.png?raw=true
 Source: https://github.com/twseptian?tab=repositories&q=OSCP&type=&language=&sort=
