@@ -1,0 +1,4 @@
+Hackthebox lab lists: https://github.com/rkhal101/Hack-the-Box-OSCP-Preparation
+Cheatsheet for OSCP: https://github.com/twseptian/Cheatsheet-God
+OSCP Survival Guide: https://github.com/twseptian/OSCP-Survival-Guide
+Source: https://github.com/twseptian?tab=repositories&q=OSCP&type=&language=&sort=
