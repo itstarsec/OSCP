@@ -1,0 +1,5 @@
+Dò tìm subdomain của mục tiêu:
+[★]$ gobuster vhost -u http://horizontall.htb/ -w /usr/share/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -t 100
+
+Dò tìm đường dẫn thư mục đang tồn tại trên mục tiêu:
+[★]$ gobuster dir -u http://api-prod.horizontall.htb/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 80
