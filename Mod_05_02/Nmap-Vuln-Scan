@@ -1,0 +1,1 @@
+nmap -T4 -n -sC -sV -p- -oN nmap-versions --script='*vuln*' <target_IP>
