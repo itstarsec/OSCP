@@ -1,0 +1,27 @@
+Guide-Spawing-Shell:
+# In reverse shell
+$ python -c 'import pty; pty.spawn("/bin/bash")'
+Ctrl-Z
+
+# In Kali
+## Swicth zsh to bash
+$ exec bash --login
+## Confirm using bash running:
+$ ps -p $$
+
+## Check info row and col:
+$ stty -a
+## Connect to Shell with stty
+$ stty raw -echo
+$ fg
+
+# In reverse shell
+$ reset
+## Answer for question "Terminal Type?": xterm-256color
+$ export SHELL=bash
+$ export TERM=xterm-256color
+$ stty rows 30 columns 167
+
+References:
+https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
+https://ed4m4s.blog/spawning-a-shell
