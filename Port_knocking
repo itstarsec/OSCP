@@ -1,5 +1,7 @@
 # Change info port in range below:
 for port in {7000,666,8890}; do nc -vz pinkydb $port; done
+||
+for i in 7000 666 8890; do nmap -Pn -sT pinkydb -p$i; done
 
 ```
 #!/bin/bash
