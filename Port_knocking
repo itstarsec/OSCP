@@ -1,0 +1,2 @@
+# Change info port in range below:
+for port in {7000,666,8890}; do nc -vz pinkydb $port; done
