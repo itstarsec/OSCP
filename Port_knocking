@@ -1,2 +1,34 @@
 # Change info port in range below:
 for port in {7000,666,8890}; do nc -vz pinkydb $port; done
+
+```
+#!/bin/bash
+A="8890"
+B="7000"
+C="666"
+cmd="nmap -Pn -sT pinkydb -p"
+for i in $A $B $C; do $cmd $i; sleep 1; done
+nc -vz -w 1 pinkydb 31337
+echo "Combination: $A $B $C"
+read -p "Continue (enter, ctrl+c to exit)?"
+for i in $A $C $B; do $cmd $i; sleep 1; done
+nc -vz -w 1 pinkydb 31337
+echo "Combination: $A $C $B"
+read -p "Continue (enter, ctrl+c to exit)?"
+for i in $B $A $C; do $cmd $i; sleep 1; done
+nc -vz -w 1 pinkydb 31337
+echo "Combination: $B $A $C"
+read -p "Continue (enter, ctrl+c to exit)?"
+for i in $B $C $A; do $cmd $i; sleep 1; done
+nc -vz -w 1 pinkydb 31337
+echo "Combination: $B $C $A"
+read -p "Continue (enter, ctrl+c to exit)?"
+for i in $C $A $B; do $cmd $i; sleep 1; done
+nc -vz -w 1 pinkydb 31337
+echo "Combination: $C $A $B"
+read -p "Continue (enter, ctrl+c to exit)?"
+for i in $C $B $A; do $cmd $i; sleep 1; done
+nc -vz -w 1 pinkydb 31337
+echo "Combination: $C $B $A"
+#read -p "Continue (enter, ctrl+c to exit)?"
+```
