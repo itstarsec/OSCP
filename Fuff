@@ -1,3 +1,9 @@
 Directory Fuzzing:
+#sudo apt install seclists
+
 ffuf -u http://dyna.htb/FUZZ -w /usr/share/wordlists/dirb/big.txt -t 200 -c -e .txt,.php,.html
 ffuf -u http://dyna.htb/nic/FUZZ -w /usr/share/wordlists/dirb/big.txt -t 200 -c 
+
+ffuf -c -e '.htm','.php','.html','.js','.txt','.zip','.bak','.asp','.aspx','xml','.log' -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -u http://url.com/FUZZ
+
+ffuf -recursion -c -e '.htm','.php','.html','.js','.txt','.zip','.bak','.asp','.aspx','.xml' -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt -u http://url.com/FUZZ
